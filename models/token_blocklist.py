@@ -3,7 +3,7 @@ from db import db
 
 # noinspection PyUnreachableCode
 class TokenBlockList(db.Model):
-    __tablename__ = 'blocklist'
+    __tablename__ = "blocklist"
 
     id = db.Column(db.Integer, primary_key=True)
     jti = db.Column(db.String(36), nullable=False, index=True)
@@ -15,7 +15,7 @@ class TokenBlockList(db.Model):
 
     @classmethod
     def find_token(cls, jti_token):
-        return cls.query.filter_by(jti=jti_token).first_or_404('Token not found')
+        return cls.query.filter_by(jti=jti_token).first_or_404("Token not found")
 
     @classmethod
     def get_blocklist(cls):
@@ -30,8 +30,4 @@ class TokenBlockList(db.Model):
         db.session.commit()
 
     def to_json(self):
-        return {
-            'id': self.id,
-            'jti': self.tji,
-            'create at': self.create_at
-        }
+        return {"id": self.id, "jti": self.tji, "create at": self.create_at}
